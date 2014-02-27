@@ -19,8 +19,7 @@ Just call it as icinga user with options -s holding the subnet and -i holding th
 
     $USER1$/check_missing_hosts.sh -s 192.168.23 -i /etc/icinga/icinga.cfg
 
-ToDo
-----
+Bugs and RFEs
+-------------
 
-* Support different subnet sizes
-* allow --help instead of -h
+Issues are tracked at the [plugins GitHub page](https://github.com/widhalmt/check_missing_hosts)

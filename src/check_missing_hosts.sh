@@ -55,13 +55,32 @@ done
 
 #SUBNET_TO_SCAN=$1
 IP_RANGE_TO_SCAN=${SUBNET_TO_SCAN}.1-254
-OBJECTS_CACHE=$(grep object_cache_file ${ICINGA_CONFIG} | cut -d= -f2)
 
 ### initializing other variables ###
 
 OUTPUT=""
 
 ### intial checks ###
+
+if [[ -z ${SUBNET_TO_SCAN} ]]
+then
+  echo "Please specify a subnet to scan with -s"
+  exit 3
+fi
+
+if [[ -z ${ICINGA_CONFIG} ]]
+then
+  echo "Please specify a valid icinga.cfg file wiwth -i"
+  exit 3
+fi
+
+OBJECTS_CACHE=$(grep object_cache_file ${ICINGA_CONFIG} | cut -d= -f2)
+
+if [[ -z ${OBJECTS_CACHE} ]]
+then
+  echo "Please specify a valid icinga.cfg file wiwth -i"
+  exit 3
+fi
 
 NMAP_TOOL=$(which nmap)
 if [[ $? -gt 0 ]]
